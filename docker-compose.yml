@@ -1,0 +1,24 @@
+services: 
+  redis: 
+    image: redis:7-alpine
+    container_name: redis-cohort
+      
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--appendonly" , "yes"]
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo-cohort
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+        MONGO_INITDB_DATABASE: higgs
+
+volumes:
+  redis-data:
+  mongo-data:
