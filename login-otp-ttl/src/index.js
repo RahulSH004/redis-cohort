@@ -24,7 +24,7 @@ app.post("/otp-verify", async (req, res) => {
     if(storedOtp !== otp){
         return res.status(400).json({ message: "Invalid OTP" });
     }
-    await redis.del(otppkey(phone));
+    
     res.json({ message: "OTP verified successfully" });
 
     await redis.del(otppkey(phone));
